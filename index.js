@@ -1,13 +1,15 @@
+require('dotenv').config();
+
 const express = require('express'),
 	app = express(),
-	port = process.env.PORT || 1337,
+	port = process.env.PORT,
 	mongoose = require('mongoose'),
 	bodyParser = require('body-parser'),
 	jwt = require('jsonwebtoken');
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/login');
+mongoose.connect(process.env.MONGO_URL);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
